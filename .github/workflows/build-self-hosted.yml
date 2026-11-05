@@ -2,7 +2,7 @@ name: build-self-hosted
 
 on:
   push:
-    branches: [ master ]
+    branches: [ 'company/main' ]
     paths:
       - '.github/workflows/build-self-hosted.yml'
       - 'CMakeLists.txt'
@@ -15,7 +15,7 @@ on:
       - 'src/**'
       - 'tests/**'
   pull_request:
-    branches: [ master ]
+    branches: [ 'company/main' ]
     paths:
       - '.github/workflows/build-self-hosted.yml'
       - 'CMakeLists.txt'
@@ -70,7 +70,7 @@ jobs:
           GG_BUILD_CUDA=1 CUDACXX=/usr/local/cuda/bin/nvcc bash ./ci/run.sh ~/results/ggml ~/mnt/ggml
 
       - name: ccache-buckets-save
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/company/main' }}
         uses: ./.github/actions/ccache-buckets
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN_CACHE_OUTPUT }}
@@ -115,7 +115,7 @@ jobs:
           GG_BUILD_VULKAN=1 GGML_VK_DISABLE_COOPMAT2=1 bash ./ci/run.sh ~/results/ggml /mnt/ggml
 
       # - name: ccache-buckets-save
-      #   if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+      #   if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/company/main' }}
       #   uses: ./.github/actions/ccache-buckets
       #   env:
       #     HF_TOKEN: ${{ secrets.HF_TOKEN_CACHE_OUTPUT }}
@@ -160,7 +160,7 @@ jobs:
           GG_BUILD_VULKAN=1 bash ./ci/run.sh ~/results/ggml /mnt/ggml
 
       # - name: ccache-buckets-save
-      #   if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+      #   if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/company/main' }}
       #   uses: ./.github/actions/ccache-buckets
       #   env:
       #     HF_TOKEN: ${{ secrets.HF_TOKEN_CACHE_OUTPUT }}
@@ -244,7 +244,7 @@ jobs:
           vulkaninfo --summary
           GG_BUILD_VULKAN=1 bash ./ci/run.sh ~/results/ggml ~/mnt/ggml
       - name: ccache-buckets-save
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/company/main' }}
         uses: ./.github/actions/ccache-buckets
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN_CACHE_OUTPUT }}

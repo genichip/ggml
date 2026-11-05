@@ -2,7 +2,7 @@ name: build-cpu
 
 on:
   push:
-    branches: [ master ]
+    branches: [ 'company/main' ]
     paths:
       - '.github/workflows/build-cpu.yml'
       - 'CMakeLists.txt'
@@ -15,7 +15,7 @@ on:
       - 'src/**'
       - 'tests/**'
   pull_request:
-    branches: [ master ]
+    branches: [ 'company/main' ]
     paths:
       - '.github/workflows/build-cpu.yml'
       - 'CMakeLists.txt'
